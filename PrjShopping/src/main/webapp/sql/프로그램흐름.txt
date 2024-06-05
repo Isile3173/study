@@ -1,0 +1,36 @@
+index.jsp    -> action.jsp      -> list.jsp
+ form           sql ="insert"
+ 입력  
+custname
+phone
+address
+joindate
+grade
+city
+
+index.jso 입력된 자료 -> oracle 에 저장(insert) : 회원가입
+<form> 안의 input 
+ name 속성에 담아서
+
+
+2)회원정보 삭제
+list.jsp     ->    view.jsp            ->    deleteaction.jsp     -> list.jsp
+      ?custno   sql ="select"       ?custno   sql="delete"
+      =10003    where custno=10003    =10003   where custno=10003
+
+
+
+3) 회원정보 수정
+list.jsp     ->    view.jsp            ->     update.jsp           ->                      updateaction.jsp    -> view.jsp                         
+      ?custno   sql ="select"       ?custno   sql="select"        ?custno  
+      =10003    where custno=10003   =10003   where custno=10003    =10003                    sql="update"   ?custno=
+                                                 입ㄹ             phone: 010-2222-2224          phone=?       10003                     
+                                                                 address: 부산 남구 양정1동    where
+                                                                 grade: A
+                                                                  city: 02
+
+
+
+
+
+
