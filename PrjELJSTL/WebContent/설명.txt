@@ -1,0 +1,96 @@
+EL (Expression Language) 와 JSTL(JSP Standard Tag Library)
+
+- jsp는 스크립트의값을 간결하고 편리하게 사용하기 위해 EL 사용
+- jsp는 개발자가 정의한 커스텀 태그들 중 많이 사용하는 것을 모아서
+  JSTL 이라는 라이브러리에 담아서 사용한다
+
+1. EL 표햔식
+  - EL 은 $ 와 {} 만 사용하여 값을 표현
+    {} 안에는 값으로 표현되는 것만  와야 한가
+   예)   ${x}                                   : x 변수의 값을 출력
+         ${arr[0]} 또는 ${arr['0']}             : 배열 arr 안의 0번째 값
+         ${member.name} 또는 ${member['name']}  : member 객체의 getName() 호출한다 
+
+2. EL 기본객체(내장객체) 11대
+  기본객체              jsp 내장객체와 비교
+  pageContext        :  pageContext  객체
+  pageScope          :  page 객체 참조  
+  requestScope       :  request 객체 참조
+  sessionScope       :  session 객체 참조 
+  applicationScope   :  application 객체 참조
+  param              :  request.getParameter()
+  parmaValues        :  request.getParameterValues()
+  header             :  request.getHeader()
+  headerValues       :  request.getHeaderValues()
+  cookie             :  request.getCookies()  
+  initParam          :  application.getInitParameter()
+  
+ 예)  ${ param.data }                ---> request.getParameter("data"); 
+      ${ requestScope.data2 }         ---> request.getAttribute("data2"); 
+      ${ sessionScope.id }           ---> session.getAttribute("id");
+      ${ applicationScope.address }  ---> application.getAttribute("address");
+  
+   *. Scope 는 생략가능하다
+        ${ sessionScope.id }   == ${ id }
+       Scope 생략시 찾는 순서
+      pageScope -> requestScope -> sessionScope -> applicationScope
+                                   해당웹사이트        웹서버
+                                   최초접속자접속    해당웹서버에 최초접속자접속:시작
+                                해당접속자접속종료       서버 종료              :종료
+                               (세션타임아웃, 로그아웃)
+
+======================================================
+JSTL
+ 1. 설치 
+   다운로드
+  http://tomcat.apache.org/taglibs/standard/
+    jakarta-taglibs-standard-1.1.1.zip  다운로드 
+      /lib/jstl.jar, standard.jar 복사 
+         프로젝트 lib 에 추가ㅣ
+ 
+ 2. JsTL 라이브러리 종류
+   코어           c     http://java.sun.com/jsp/jstl/core
+                        - 번수지원,흐름 제어, URL 처리
+   XML            x     http://java.sun.com/jsp/jstl/xml
+                        - xml 관련처리, xml 흐름제어   
+   국제화         fmt   http://java.sun.com/jsp/jstl/fmt
+                        국제화 처리, 메시지 관리
+                        국가별 통화처리($, 원화표시, ...)
+                        메뉴가 설정에따라 한글, 영어,한자로 표시                      
+   데이터베이스   sql   http://java.sun.com/jsp/jstl/sql 
+                        데이터베이스 접근
+   함수           fn    http://java.sun.com/jsp/jstl/fn\
+                        collection, String 처리    
+
+3. jstl 변수 및 제어문
+- core 테그를 사용한다
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 필수
+ 
+-<c:set>               변수설정
+-<c:out>               화면에 변수값 출력
+-<c:remove>            변수제거
+-<c:catch>             코드에 예외를 잡아냄
+-<c:if test="조건식">  조건문(if) 
+                       주의 : else 부분이 없음
+-<c:choose>            switch, if~else 대체
+-<c:forEach>           반복문
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
